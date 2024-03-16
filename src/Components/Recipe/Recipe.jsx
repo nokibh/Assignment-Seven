@@ -21,12 +21,12 @@ const Recipe = ({ recipe }) => {
         <div className="flex justify-around">
           <div>
             <img src="" alt="" />
-            <p>Time</p>
+            <p>{recipe.Preparing_time}</p>
           </div>
           <div>
             <div>
               <img src="" alt="" />
-              <p>claored</p>
+              <p>{recipe.Calories}</p>
             </div>
           </div>
         </div>

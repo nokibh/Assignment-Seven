@@ -15,7 +15,7 @@ function App() {
   return (
     <>
       <div className="flex justify-around">
-        <div className="carts-container">
+        <div className="">
           {recipes.map(rc => (
             <Recipe key={rc.id} recipe={rc}></Recipe>
           ))}
