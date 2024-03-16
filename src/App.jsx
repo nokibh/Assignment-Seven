@@ -151,12 +151,13 @@ function App() {
         </div>
       </div>
       ;
-      <div className="flex justify-around">
-        <div className="">
+      <div className="flex lg:flex-row flex-col justify-around ">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 ">
           {recipes.map(rc => (
             <Recipe key={rc.id} recipe={rc}></Recipe>
           ))}
         </div>
+        {/* want to cook */}
         <div className="border border-gray-300 rounded-xl p-4">
           <div>
             <h2 className="text-lg font-medium py-2">Want to cook: 0</h2>
