@@ -12,10 +12,15 @@ function App() {
         setRecipes(data);
       });
   }, []);
-  const handlerBtn = p => {
-    setCart([p]);
+  const handleBtn = p => {
+    const isExist = cart.find(item => item.id == p.id);
+    if (!isExist) {
+      setCart([...cart, p]);
+    } else {
+      alert('ache');
+    }
   };
-
+  console.log(cart);
   return (
     <>
       <div className="navbar bg-base-100">
@@ -167,7 +172,7 @@ function App() {
         <div className="flex lg:flex-row flex-col justify-around gap-4 ">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 ">
             {recipes.map(rc => (
-              <Recipe key={rc.id} recipe={rc} handlerBtn={handlerBtn}></Recipe>
+              <Recipe key={rc.id} handleBtn={handleBtn} recipe={rc}></Recipe>
             ))}
           </div>
           {/* want to cook */}
@@ -175,10 +180,22 @@ function App() {
             <div>
               <h2 className="text-lg font-medium py-2">Want to cook: 0</h2>
               <hr />
-              <div className=" grid grid-cols-3">
+              <div className=" grid grid-cols-4">
                 <p>Name</p>
                 <p>Time</p>
                 <p>Calories</p>
+              </div>
+              <div className="cart-info">
+                {cart.map(item => (
+                  <div className="grid grid-cols-4">
+                    <p>{item.recipe_name}</p>
+                    <p>{item.Preparing_time}</p>
+                    <p>{item.Calories}</p>
+                    <button class="btn bg-green-400 rounded-full">
+                      Secondary
+                    </button>
+                  </div>
+                ))}
               </div>
             </div>
             <div>

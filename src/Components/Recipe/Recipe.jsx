@@ -1,5 +1,4 @@
-const Recipe = ({ recipe, handlerBtn }) => {
-  console.log(handlerBtn);
+const Recipe = ({ recipe, handleBtn }) => {
   return (
     <div className="card p-5 lg:w-96 bg-base-100 shadow-xl">
       <img className="rounded-xl h-48" src={recipe.image_url} alt="Shoes" />
@@ -62,8 +61,8 @@ const Recipe = ({ recipe, handlerBtn }) => {
         </div>
         <div className="card-actions ">
           <button
-            onClick={() => handlerBtn(recipe)}
-            className="btn btn-primary"
+            onClick={() => handleBtn(recipe)}
+            className="btn bg-green-400 rounded-full"
           >
             Want to Cook
           </button>
