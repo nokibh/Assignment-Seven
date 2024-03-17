@@ -12,12 +12,12 @@ function App() {
         setRecipes(data);
       });
   }, []);
-  const handleBtn = p => {
-    const isExist = cart.find(item => item.id == p.id);
+  const handleRecipe = r => {
+    const isExist = cart.find(point => point.id == r.id);
     if (!isExist) {
-      setCart([...cart, p]);
+      setCart([...cart, r]);
     } else {
-      alert('ache');
+      alert('already exisit');
     }
   };
   console.log(cart);
@@ -172,7 +172,7 @@ function App() {
         <div className="flex lg:flex-row flex-col justify-around gap-4 ">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 ">
             {recipes.map(rc => (
-              <Recipe key={rc.id} handleBtn={handleBtn} recipe={rc}></Recipe>
+              <Recipe key={rc.id} handleBtn={handleRecipe} recipe={rc}></Recipe>
             ))}
           </div>
           {/* want to cook */}
