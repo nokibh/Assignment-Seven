@@ -4,6 +4,7 @@ import Recipe from './Components/Recipe/Recipe';
 
 function App() {
   const [recipes, setRecipes] = useState([]);
+  const [cart, setCart] = useState([]);
   useEffect(() => {
     fetch('./Recipe.json')
       .then(res => res.json())
@@ -11,7 +12,10 @@ function App() {
         setRecipes(data);
       });
   }, []);
-  console.log(recipes);
+  const handlerBtn = p => {
+    setCart([p]);
+  };
+
   return (
     <>
       <div className="navbar bg-base-100">
@@ -122,7 +126,8 @@ function App() {
       </div>
       ;{/* banner section */}
       <div
-        className="hero lg:h-[70vh] bg-cover bg-no-repeat bg-center rounded-2xl overflow-hidden my-8"
+        className="hero lg:h-[70vh] bg-cover bg-no-repeat bg-center rounded-2xl
+        overflow-hidden my-8"
         style={{
           backgroundImage:
             'url(https://images.pexels.com/photos/8629106/pexels-photo-8629106.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)',
@@ -151,38 +156,48 @@ function App() {
         </div>
       </div>
       ;
-      <div className="flex lg:flex-row flex-col justify-around ">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 ">
-          {recipes.map(rc => (
-            <Recipe key={rc.id} recipe={rc}></Recipe>
-          ))}
+      <section>
+        <div className="pb-14">
+          <h2 className="text-xl font-bold">Our Recipes</h2>
+          <p className="text-base font-normal">
+            Try one of our signature selections and see what everyone's talking
+            about!
+          </p>
         </div>
-        {/* want to cook */}
-        <div className="border border-gray-300 rounded-xl p-4">
-          <div>
-            <h2 className="text-lg font-medium py-2">Want to cook: 0</h2>
-            <hr />
-            <div className=" grid grid-cols-3">
-              <p>Name</p>
-              <p>Time</p>
-              <p>Calories</p>
+        <div className="flex lg:flex-row flex-col justify-around gap-4 ">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 ">
+            {recipes.map(rc => (
+              <Recipe key={rc.id} recipe={rc} handlerBtn={handlerBtn}></Recipe>
+            ))}
+          </div>
+          {/* want to cook */}
+          <div className="border border-gray-300 rounded-xl p-4">
+            <div>
+              <h2 className="text-lg font-medium py-2">Want to cook: 0</h2>
+              <hr />
+              <div className=" grid grid-cols-3">
+                <p>Name</p>
+                <p>Time</p>
+                <p>Calories</p>
+              </div>
+            </div>
+            <div>
+              <h2 className="text-lg font-medium py-2">Want to cook: 0</h2>
+              <hr />
+              <div className=" grid grid-cols-3">
+                <p>Name</p>
+                <p>Time</p>
+                <p>Calories</p>
+              </div>
+
+              <div className="flex justify-between py-4">
+                <p>Total Time = 0 minutes</p>
+                <p>Total Calories = 0 calories</p>
+              </div>
             </div>
           </div>
-          <div>
-            <h2 className="text-lg font-medium py-2">Want to cook: 0</h2>
-            <hr />
-            <div className=" grid grid-cols-3">
-              <p>Name</p>
-              <p>Time</p>
-              <p>Calories</p>
-            </div>
-            <div className="flex justify-between py-4">
-              <p>Total Time = 0 minutes</p>
-              <p>Total Calories = 0 calories</p>
-            </div>
-          </div>
         </div>
-      </div>
+      </section>
     </>
   );
 }

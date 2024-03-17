@@ -1,10 +1,9 @@
-const Recipe = ({ recipe }) => {
-  console.log(recipe);
+const Recipe = ({ recipe, handlerBtn }) => {
+  console.log(handlerBtn);
   return (
-    <div className="card w-96 bg-base-100 shadow-xl">
-      <figure>
-        <img src={recipe.image_url} alt="Shoes" />
-      </figure>
+    <div className="card p-5 lg:w-96 bg-base-100 shadow-xl">
+      <img className="rounded-xl h-48" src={recipe.image_url} alt="Shoes" />
+
       <div className="card-body justify-start">
         <h2 className="card-title">{recipe.recipe_name}</h2>
         <p className="">{recipe.short_description}</p>
@@ -62,7 +61,12 @@ const Recipe = ({ recipe }) => {
           </div>
         </div>
         <div className="card-actions ">
-          <button className="btn btn-primary">Want to Cook</button>
+          <button
+            onClick={() => handlerBtn(recipe)}
+            className="btn btn-primary"
+          >
+            Want to Cook
+          </button>
         </div>
       </div>
     </div>
