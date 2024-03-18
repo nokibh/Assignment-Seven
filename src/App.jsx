@@ -8,6 +8,8 @@ function App() {
   const [recipes, setRecipes] = useState([]);
   const [cart, setCart] = useState([]);
   const [cook, setCook] = useState([]);
+  const [readingTime, setTime] = useState(0);
+  const [totalCalore, setCalore] = useState(0);
   useEffect(() => {
     fetch('./Recipe.json')
       .then(res => res.json())
@@ -23,9 +25,11 @@ function App() {
       toast('already exisit');
     }
   };
-  const currentyCoking = (p, id) => {
+  const currentyCoking = (p, id, time, calore) => {
     setCook([...cook, p]);
     const remainingCook = cart.filter(cook => cart.recipe_id !== id);
+    setTime(readingTime + time);
+    setCalore(totalCalore + calore);
     setCart(remainingCook);
   };
   console.log(cart);
@@ -204,7 +208,14 @@ function App() {
                     <p>{item.Preparing_time}</p>
                     <p>{item.Calories}</p>
                     <button
-                      onClick={() => currentyCoking(item, item.recipe_id)}
+                      onClick={() =>
+                        currentyCoking(
+                          item,
+                          item.recipe_id,
+                          item.Preparing_time,
+                          item.Calories
+                        )
+                      }
                       class="btn bg-green-400 rounded-full"
                     >
                       Preparing
@@ -214,7 +225,9 @@ function App() {
               </div>
             </div>
             <div>
-              <h2 className="text-lg font-medium py-2">Currently cook: 0</h2>
+              <h2 className="text-lg font-medium py-2">
+                Currently cook:{cart.length}
+              </h2>
               <hr />
               <div className=" grid grid-cols-3">
                 <p>Name</p>
@@ -229,8 +242,10 @@ function App() {
                 </div>
               ))}
               <div className="flex justify-between py-4">
-                <p>Total Time = 0 minutes</p>
-                <p>Total Calories = 0 calories</p>
+                <p>
+                  Total Time = <span>{readingTime}</span> minutes
+                </p>
+                <p>Total Calories = {totalCalore} calories</p>
               </div>
             </div>
           </div>
