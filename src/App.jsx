@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import Recipe from './Components/Recipe/Recipe';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const [recipes, setRecipes] = useState([]);
@@ -13,16 +15,17 @@ function App() {
       });
   }, []);
   const handleRecipe = r => {
-    const isExist = cart.find(point => point.id == r.id);
+    const isExist = cart.find(point => point.recipe_id == r.recipe_id);
     if (!isExist) {
       setCart([...cart, r]);
     } else {
-      alert('already exisit');
+      toast('already exisit');
     }
   };
-  console.log(cart);
+
   return (
     <>
+      <ToastContainer />
       <div className="navbar bg-base-100">
         <div className="navbar-start">
           <div className="dropdown">
@@ -192,7 +195,7 @@ function App() {
                     <p>{item.Preparing_time}</p>
                     <p>{item.Calories}</p>
                     <button class="btn bg-green-400 rounded-full">
-                      Secondary
+                      Preparing
                     </button>
                   </div>
                 ))}
