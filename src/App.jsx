@@ -181,16 +181,19 @@ function App() {
           {/* want to cook */}
           <div className="border border-gray-300 rounded-xl p-4">
             <div>
-              <h2 className="text-lg font-medium py-2">Want to cook: 0</h2>
+              <h2 className="text-lg font-medium py-2">
+                Want to cook: {cart.length}
+              </h2>
               <hr />
-              <div className=" grid grid-cols-4">
+              <div className=" grid grid-cols-5">
                 <p>Name</p>
                 <p>Time</p>
                 <p>Calories</p>
               </div>
               <div className="cart-info">
-                {cart.map(item => (
-                  <div className="grid grid-cols-4">
+                {cart.map((item, index) => (
+                  <div className="grid grid-cols-5">
+                    <p>{index + 1}</p>
                     <p>{item.recipe_name}</p>
                     <p>{item.Preparing_time}</p>
                     <p>{item.Calories}</p>
@@ -202,7 +205,7 @@ function App() {
               </div>
             </div>
             <div>
-              <h2 className="text-lg font-medium py-2">Want to cook: 0</h2>
+              <h2 className="text-lg font-medium py-2">Currently cook: 0</h2>
               <hr />
               <div className=" grid grid-cols-3">
                 <p>Name</p>

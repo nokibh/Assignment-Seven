@@ -1,6 +1,6 @@
 const Recipe = ({ recipe, handleBtn }) => {
   return (
-    <div className="card p-5 lg:w-96 bg-base-100 shadow-xl">
+    <div className="card p-5  bg-base-100 shadow-xl">
       <img className="rounded-xl h-48" src={recipe.image_url} alt="Shoes" />
 
       <div className="card-body justify-start">
