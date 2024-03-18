@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 function App() {
   const [recipes, setRecipes] = useState([]);
   const [cart, setCart] = useState([]);
+  const [cook, setCook] = useState([]);
   useEffect(() => {
     fetch('./Recipe.json')
       .then(res => res.json())
@@ -22,7 +23,12 @@ function App() {
       toast('already exisit');
     }
   };
-
+  const currentyCoking = (p, id) => {
+    setCook([...cook, p]);
+    const remainingCook = cart.filter(cook => cart.recipe_id !== id);
+    setCart(remainingCook);
+  };
+  console.log(cart);
   return (
     <>
       <ToastContainer />
@@ -197,7 +203,10 @@ function App() {
                     <p>{item.recipe_name}</p>
                     <p>{item.Preparing_time}</p>
                     <p>{item.Calories}</p>
-                    <button class="btn bg-green-400 rounded-full">
+                    <button
+                      onClick={() => currentyCoking(item, item.recipe_id)}
+                      class="btn bg-green-400 rounded-full"
+                    >
                       Preparing
                     </button>
                   </div>
@@ -212,7 +221,13 @@ function App() {
                 <p>Time</p>
                 <p>Calories</p>
               </div>
-
+              {cart.map(item => (
+                <div className=" grid grid-cols-3">
+                  <p>{item.recipe_name}</p>
+                  <p>{item.Preparing_time}</p>
+                  <p>{item.Calories}</p>
+                </div>
+              ))}
               <div className="flex justify-between py-4">
                 <p>Total Time = 0 minutes</p>
                 <p>Total Calories = 0 calories</p>
